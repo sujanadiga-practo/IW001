@@ -34,7 +34,14 @@ module.exports.routes = {
 
   'get /contacts': 'Contact.find',
   
-  'get /contacts/:id': 'Contact.find'
+  'get /contacts/:id': 'Contact.find',
+
+  'delete /contacts/:id': 'Contact.destroy',
+
+  'patch /contacts/:id': 'Contact.update',
+
+  'post /contacts': 'Contact.create'
+
 
   /***************************************************************************
   *                                                                          *

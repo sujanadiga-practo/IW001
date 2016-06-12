@@ -38,7 +38,7 @@ module.exports.routes = {
 
   'delete /contacts/:id': 'Contact.destroy',
 
-  'patch /contacts/:id': 'Contact.update',
+  'put /contacts/:id': 'Contact.update',
 
   'post /contacts': 'Contact.create'
 

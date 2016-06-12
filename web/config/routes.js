@@ -32,9 +32,22 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': {
-    view: 'homepage'
+  'get /': 'Contact.index',
+
+  'get /contacts': 'Contact.index',
+
+  'delete /contacts/:id': 'Contact.destroy',
+
+  'put /contacts/:id': 'Contact.update',
+
+  'post /contacts': 'Contact.create',
+
+  'get /contacts/edit/:id': 'Contact.edit',
+
+  'get /contacts/new': {
+    view: 'contact/new'
   }
+
 
   /***************************************************************************
   *                                                                          *

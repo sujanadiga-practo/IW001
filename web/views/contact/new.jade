@@ -1,0 +1,25 @@
+extends ../layout.jade
+block content
+  .container
+    h3.row Add new contact
+    form(method="post", action="/contacts").form.col-md-6
+      .form-group
+        label(for="firstName") First Name :
+        input(class="form-control", type="text", name="firstName", required=true)
+      .form-group
+        label(for="lastName") Last Name :
+        input(class="form-control", type="text", name="lastName")
+      .form-group
+        label(for="mobile") Mobile :
+        input(class="form-control", type="text", name="mobile", required=true)
+      .form-group
+        label(for="email") Email :
+        input(class="form-control", type="email", name="email", required=true)
+      .form-group
+        label(for="company") Company :
+        input(class="form-control", type="text", name="company")
+      
+      input.btn.btn-success(type="submit", value="SUBMIT")
+      span &nbsp;&nbsp;
+      a.btn.btn-danger(href="/contacts") CANCEL
+      p      

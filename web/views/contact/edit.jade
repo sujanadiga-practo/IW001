@@ -1,0 +1,52 @@
+extends ../layout.jade
+block content
+  script(type="text/javascript").
+    function update(id) {
+      $.ajax({
+        url: '/contacts/' + id,
+        type: 'put',
+        data: {
+          firstName: $('#firstName').val(),
+          lastName: $('#lastName').val(),
+          mobile: $('#mobile').val(),
+          email: $('#email').val(),
+          company : $('#company ').val()
+        },
+        success: function (res, status) {
+          if (res.apiStatus === 'success') {
+            alert('Successfully updated the contact.');
+            location.href = '/contacts'
+          } else {
+            alert('Could not update changes, Sorry.');
+            location.reload();  
+          }
+        },
+        error: function (xhr, status, error) {
+          alert('Could not update changes, Sorry.');
+          location.reload();
+        }
+      })
+    }
+  .container
+    h3.row Edit contact
+    form.form.col-md-6
+      .form-group
+        label(for="fname") First Name :
+        input(class="form-control", type="text", name="firstName", id="firstName", required=true, value=contact.firstName)
+      .form-group
+        label(for="lname") Last Name :
+        input(class="form-control", type="text", name="lastName", id="lastName", value=contact.lastName)
+      .form-group
+        label(for="mobile") Mobile :
+        input(class="form-control", type="text", name="mobile", id="mobile", required=true, value=contact.mobile)
+      .form-group
+        label(for="email") Email :
+        input(class="form-control", type="email", name="email", id="email", required=true, value=contact.email)
+      .form-group
+        label(for="company") Company :
+        input(class="form-control", type="text", name="company", id="company", value=contact.company)
+      
+      input.btn.btn-success(value="UPDATE", type="button", onclick="update(#{contact.id})")
+      span &nbsp;&nbsp;
+      a.btn.btn-danger(href="/contacts") CANCEL
+      p      

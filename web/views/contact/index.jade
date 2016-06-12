@@ -1,0 +1,47 @@
+extends ../layout.jade
+block content
+  script(type='text/javascript').
+    function deleteContact(id) {
+      $.ajax({
+        url: '/contacts/' + id,
+        type: 'delete',
+        success: function (res, status) {
+          if (res.apiStatus === 'success') {
+            alert('Successfully deleted the contact');
+            location.reload();
+          } else {
+            alert('Could not delete the contact, Sorry.');
+            location.reload();  
+          }
+        },
+        error: function (xhr, status, error) {
+          alert('Could not delete the contact, Sorry.');
+          location.reload();
+        }
+      })
+    }
+  if apiStatus == 'success'
+    h3 All Contacts
+    table.table.table-bordered
+      tr
+        th Id
+        th Name
+        th Mobile Number
+        th Email Id
+        th Company
+        th Actions
+        
+      each contact in contacts
+        tr
+          td= contact.id 
+          td= contact.firstName + ' ' + contact.lastName
+          td= contact.mobile
+          td= contact.email
+          td= contact.company
+          td
+            a.btn.btn-primary.btn-xs(href='/contacts/edit/' + contact.id) EDIT
+            span &nbsp;&nbsp;
+            button(onclick='deleteContact(#{contact.id})').btn.btn-danger.btn-xs DELETE
+    a.btn.btn-success.btn-sm(href='/contacts/new') NEW
+  else
+    h3= message
